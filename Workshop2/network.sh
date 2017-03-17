@@ -18,3 +18,4 @@ uptime | awk -F'(,)+' '{ printf "Current Users: %s \n", $2 }'
 echo "CPU Load: $cpu_time"
 echo "Current Network: $current_network"
 echo "-------------------------- End Report ----------------------------"
+exit 0  # everything returned fine
