@@ -14,4 +14,4 @@ if [ $? -ne 0 ]; then
     echo "There was an error getting GIT data"
     exit 1
 fi
-exit 0 # all good
+exit 0 # all good so exit
