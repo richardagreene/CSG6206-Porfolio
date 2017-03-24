@@ -28,7 +28,15 @@ function setupProxySettings()
 {
     # reference http://askubuntu.com/questions/150210/how-do-i-set-systemwide-proxy-servers-in-xubuntu-lubuntu-or-ubuntu-studio
     echo -n "Please enter your ECU username: "; read username
+    if [[ -z "$username" ]]; then
+        echo -e "No username was entered\n"
+        exit 1
+    fi
     echo -n "Please enter your ECU password: "; read -s password
+    if [[ -z "$password" ]]; then
+        echo -e "\nNo password was entered\n"
+        exit 1
+    fi
     echo "export http_proxy=http://$username:$password@proxy.ecu.edu.au:80" >> /etc/environment
     echo "export HTTP_PROXY=http://$username:$password@proxy.ecu.edu.au:443" >> /etc/environment
     echo "export https_proxy=https://$username:$password@proxy.ecu.edu.au:443" >> /etc/environment
@@ -52,6 +60,8 @@ checkNetwork
 if [ $? -eq 0 ]
 then
     setupProxySettings
+    exit 0
 else
     clearProxySettings
+    exit 0
 fi 
