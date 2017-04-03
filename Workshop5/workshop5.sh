@@ -34,7 +34,7 @@ def CalculateEdge(arr)
    return result
 end
 
-# Please each line into an array
+# Place each line into an array
 input = $stdin.read
 if not (input =~ /[^0-1\W]/).nil? then
     puts "Error: Only 0-1 values allowed. e.g. 0100001111"
