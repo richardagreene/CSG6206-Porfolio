@@ -35,13 +35,17 @@ def CalculateEdge(arr)
 end
 
 # Place each line into an array
-input = $stdin.read
-if not (input =~ /[^0-1\W]/).nil? then
-    puts "Error: Only 0-1 values allowed. e.g. 0100001111"
-    puts "       Whitespace will be considered '0'"
-    exit
+begin
+  input = $stdin.read
+  if not (input =~ /[^0-1\W]/).nil? then
+      puts "Error: Only 0-1 values allowed. e.g. 0100001111"
+      puts "       Whitespace will be considered '0'"
+      exit
+  end
+  arr = input.split(/\n/)
+  result = CalculateEdge(arr)
+  puts "Input :\t#{input}"
+  puts "Output:\t#{result}"
+rescue Exception => e
+  puts 'There was an unexpected error processing. ' + e.message
 end
-arr = input.split(/\n/)
-result = CalculateEdge(arr)
-puts "Input :\t#{input}"
-puts "Output:\t#{result}"
