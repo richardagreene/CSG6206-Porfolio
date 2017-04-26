@@ -4,10 +4,10 @@ var sharp = require('sharp');
 var fs = require('fs');
 
 // check that command was correctly entered
-if(!process.argv[2] || !process.argv[3])
+if(!process.argv[2])
 {
   console.log("Error: parameters where not passed correctly.");
-  console.log(" syntax: node workshop7 <input filename> <output filename>");
+  console.log(" syntax: node workshop7 <input filename>");
   return;
 }
 // check file exists
@@ -18,7 +18,6 @@ if(!fs.existsSync(process.argv[2])) {
 //  ----------------
 //  Process the file
 //  ----------------
-console.log("Reading image file " + process.argv[2] + ", output to " +process.argv[3])
 var buffer = sharp(process.argv[2])
   .raw()
   .toBuffer(function(err, data, info)
@@ -34,14 +33,12 @@ var buffer = sharp(process.argv[2])
         }
     }
     // process the graphic file
-    fs.writeFileSync(process.argv[3],"");
     for (var y = 0; y < info.height; y++) {
         var line="";
         for (var x = 0; x < info.width; x++) {
             var idx = (info.width * y + x) * 3 ;
             line=line+(data[idx] + data[idx+1] + data[idx+2] > 0 ? "0" : "1") 
         }
-        fs.appendFileSync(process.argv[3], line + "\n");
+        console.log(line);
     }
-    console.log("process complete");
   });
