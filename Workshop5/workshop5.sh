@@ -29,7 +29,7 @@ def CalculateEdge(arr)
         prevChar = currentChar
         result = result+"#{edge}"
      end
-   result = "#{result}\n\t"
+   result = "#{result}\n"
    end
    return result
 end
@@ -44,8 +44,8 @@ begin
   end
   arr = input.split(/\n/)
   result = CalculateEdge(arr)
-  puts "Input :\t#{input}"
-  puts "Output:\t#{result}"
+# puts "Input :\t#{input}"
+  puts "#{result}"
 rescue Exception => e
   puts 'There was an unexpected error processing. ' + e.message
 end

@@ -4,7 +4,7 @@
 //    http://php.net/manual/en/function.imagesetpixel.php */
 //
 
-$input = stream_get_line(STDIN, 1024);
+$input = stream_get_line(STDIN, 1000000);
 $input = trim($input, "\n"); // remove last carrage return if passed
 
 // check arguments
@@ -25,6 +25,7 @@ if (preg_match($regex, $input)) {
 // check rows 
 $arr = explode("\n", $input);
 foreach($arr as $curLine => $lineElement) {
+    echo strlen($lineElement) . " - " .strlen($arr[1]);
     if(strlen($lineElement) != strlen($arr[1])) {
         echo "Error; not all row lengths are equal.\n";
         return;
@@ -38,7 +39,6 @@ $white = imagecolorallocate($image, 0xFF, 0xFF, 0xFF);
 $black = imagecolorallocate($image, 0x00, 0x00, 0x00);
 
 foreach($arr as $curLine => $lineElement) {
-    $lineSplit = preg_split("//", $lineElement);
     foreach($lineSplit as $pixelkey => $pixelElement) {
         if ($pixelElement == "1") 
             imagesetpixel($image, $pixelkey-1, $curLine, $black);
